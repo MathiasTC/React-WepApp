@@ -7,7 +7,6 @@ export class AppRoutes extends Component {
         return (
             <Switch>
                 <Route exact path='/' component={Page.Home}/>
-                <Route path='/about' component={Page.About}/>
             </Switch>
         )
     }

@@ -1,81 +1,63 @@
 import * as React from 'react';
-import { makeStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import ToolBar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+
+import Card from '@material-ui/core/Card';
 import Box from '@material-ui/core/Box';
-import MenuItem from '@material-ui/core/MenuItem';
-import Home from '@material-ui/icons/Home';
-import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import 'normalize.css';
+import Avatar from '@material-ui/core/Avatar';
+import { makeStyles} from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+
 import { SocialIcon } from 'react-social-icons';
-import { CssBaseline } from '@material-ui/core';
+import 'normalize.css';
 import { BrowserRouter } from 'react-router-dom';
-import { AppRoutes } from './App.routes';
+
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
-
-const basicTheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#124116'
+    root: {
+      display: 'flex',
+      '& > *': {
+        margin: theme.spacing(1),
+      },
     },
-    background: {
-      default: "#303030"
-    },    
-  }
-})
+    bigAvatar: {
+      width: 275,
+      height: 275,
+    },
+  }));
 
-export const App = (theme) => {
-  const classes = useStyles(theme);
+export const App = (props): JSX.Element => {
+    const classes = useStyles(props);
 
-    return ( 
-      <BrowserRouter>
-      <div className={classes.root}>    
-      <MuiThemeProvider theme={basicTheme}> 
-      <CssBaseline />
-        <AppBar position="static">
-            <ToolBar>              
-                <MenuItem component={Link} to="/" className={classes.menuButton}>
-                <Typography variant="h6" className={classes.title}>
-                  <Home />
-                </Typography>
-                </MenuItem>
-                <MenuItem component={Link} to="/about">
-                <Typography variant="h6" className={classes.title}>
-                  About me
-                </Typography>
-                </MenuItem>
-                <Grid justify="flex-end" container>
-                  <Box component="span" m={1}>        
-                  <SocialIcon url="https://www.facebook.com/mathias.t.christensen" style={{ height: 25, width: 25}}/>
-                  </Box>
-                  <Box component="span" m={1}>
-                  <SocialIcon url="https://www.linkedin.com/in/mathias-t-christensen" style={{ height: 25, width: 25}}/>
-                  </Box>
-                  <Box component="span" m={1}>
-                  <SocialIcon url="https://twitter.com/theDeviiant" style={{ height: 25, width: 25}}/>
-                  </Box>
-                  <Box component="span" m={1}>
-                  <SocialIcon url="https://github.com/MathiasTC" style={{ height: 25, width: 25}}/>  
-                  </Box> 
+    return (
+        <BrowserRouter>
+        <React.Fragment>
+            <Grid justify="center" item xs={ 12 }>
+            <Card>
+                <Grid alignItems="center" justify="center" container>
+                    <Box component="span" m={1}>
+                        <Avatar src={require('../public/assets/mtc.jpg')} className={ classes.bigAvatar } />                        
+                    </Box>
+                </Grid>
+                <Grid justify="center" container>
+                    <Typography variant="h5">Mathias T. Christensen</Typography>
+                </Grid>
+                <Grid justify="center" container>
+                    <Typography variant="h6">IT & Software development</Typography>
+                </Grid>             
+                <Grid justify="center" container>                                  
+                    <Box component="span" m={1}>
+                        <SocialIcon url="https://www.linkedin.com/in/mathias-t-christensen" style={{ height: 50, width: 50 }}/>
+                    </Box>
+                    <Box component="span" m={1}>
+                        <SocialIcon url="https://github.com/MathiasTC" style={{ height: 50, width: 50 }}/>  
+                    </Box> 
+                    <Box component="span" m={1}>        
+                        <SocialIcon url="https://www.facebook.com/mathias.t.christensen" style={{ height: 50, width: 50 }}/>
+                    </Box>                    
                 </Grid> 
-            </ToolBar>
-        </AppBar>    
-        <AppRoutes />       
-        </MuiThemeProvider>        
-      </div>
-      </BrowserRouter>
-    )
-}
+            </Card>
+            </Grid>
+        </React.Fragment>
+        </BrowserRouter>
+    );
+};
